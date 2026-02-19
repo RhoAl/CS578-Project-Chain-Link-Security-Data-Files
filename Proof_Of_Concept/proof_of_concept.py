@@ -65,7 +65,7 @@ DOMAIN_COUNT = 500  #Number of domains in the tranco list
 
 #TODO: Figure out a way to deal with domains with identical destinations, or if we even want to do anything about it
 #TODO: Figure out a way to request and parse the domains that have HTTPS + ECH + DNSSEC (should be easy with what we currently have)
-#TODO: Write data to an external file
+#TODO: We'll very much need to comeup with a way to write both the study calculations AND the retrieved data itself to external files (specifically the HTTPS protocols we're parsing, so we actually know what we're looking at) 
 #TODO: Finalize our methodology for data collection (should we repeat the retrieves over a period of a week)
 
 #TODO: Figure out a way to retrieve the following parameters:
