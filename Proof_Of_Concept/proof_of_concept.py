@@ -53,6 +53,7 @@ import requests
 
 TRANCO_FILEPATH = "tranco_ZWZGG.csv" # File name for the tranco list
 DOMAIN_COUNT = 500  #Number of domains in the tranco list
+EXTERNAL_FILE_MODE = False  # Bool to decide if functions write to external files; for testing (might end up with a ton of files if always on) 
 
 # The most performant way of doing this (not making a bunch of extra domain fetches) is to just
 # get the json (or any kind of list) with the Domain protocol, then to parse it. That'll take some time to understand 
@@ -65,7 +66,7 @@ DOMAIN_COUNT = 500  #Number of domains in the tranco list
 
 #TODO: Figure out a way to deal with domains with identical destinations, or if we even want to do anything about it
 #TODO: Figure out a way to request and parse the domains that have HTTPS + ECH + DNSSEC (should be easy with what we currently have)
-#TODO: We'll very much need to comeup with a way to write both the study calculations AND the retrieved data itself to external files (specifically the HTTPS protocols we're parsing, so we actually know what we're looking at) 
+#TODO: Finalize the way to write both the study calculations AND the retrieved data itself to external files (specifically the HTTPS protocols we're parsing, so we actually know what we're looking at) 
 #TODO: Finalize our methodology for data collection (should we repeat the retrieves over a period of a week)
 
 #TODO: Figure out a way to retrieve the following parameters:
@@ -91,6 +92,29 @@ def grab_list_domain() :
             domains.append(domain.strip())
 
     return domains
+
+
+
+# Try to grab the raw HTTPS Resource record
+# Hopefully write to some sort of external file too
+def raw_https_rr(domains) :
+    # For right now let's just trying outputting the data we get from a query
+    try:
+        HTTPS_List = dns.resolver.resolve(domains, "HTTPS")
+
+        for rdata in HTTPS_List: 
+            print(f"RDATA: {rdata}")
+            print(f"Priority: {rdata.priority}")
+            print(f"Target: {rdata.target}")
+            print(f"Params: {rdata.params}")
+
+        # When we have a better idea of what we're returning, let's try to return the actual data
+        return True
+    except (dns.resolver.NoAnswer,
+            dns.resolver.NXDOMAIN,
+            dns.resolver.NoNameservers,
+            dns.exception.Timeout):
+        return False
 
 
 
@@ -126,9 +150,11 @@ def dnssec_check(HTTPS_List):
 # Returns the number of domains using HTTPS protocol
 def https_check(domains) :
     try:
-        HTTPS_List = dns.resolver.resolve(domains, "HTTPS")
+        HTTPS_List = dns.resolver.resolve(domains, "HTTPS") # It's important to note that resolve returns a special memory object; I think you need to alter it to parse it
         ech_bool = ech_check(HTTPS_List)
         dnssec_bool = dnssec_check(HTTPS_List)
+
+        # print(HTTPS_List) #Test print of the response
 
         return len(HTTPS_List) > 0, ech_bool, dnssec_bool
 
@@ -153,6 +179,8 @@ def main() :
                 https_dnssec_count += 1
         if ech_ans == True:
             ech_count += 1
+
+        # raw_https_rr(domain)  # Output raw data
 
     # Share among domains
     # In the final version of the program
