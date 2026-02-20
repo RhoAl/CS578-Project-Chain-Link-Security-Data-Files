@@ -76,6 +76,8 @@ EXTERNAL_FILE_MODE = False  # Bool to decide if functions write to external file
 # -Usage of parameter ipv6hint
 # -Usage of HTTPS RR Default vs Dynamic Config
 
+#TODO: Make the inital calculations with parameters
+
 
 # Grab the domains from the tranco list
 def grab_list_domain() :
@@ -122,10 +124,11 @@ def raw_https_rr(domains) :
 # In order to reduce the number of redundant domain requests, this will be called within https_check
 def ech_check(HTTPS_List):
     ech_bool = False   # Count of domains with ech support
+    inc = 0 #For loop incrementor
     # ech_count = True
 
-    for data in HTTPS_List:
-            if 'ech=' in data.to_text():
+    for rdata in HTTPS_List:
+            if 'ech=' in rdata.to_text():
                 # ech_count += 1  # this should probably just be ech_bool = 1, since the function's only gonna be used on 1 domain at a time
                 ech_bool = True
     
@@ -143,6 +146,37 @@ def dnssec_check(HTTPS_List):
             dnssec_bool = True
 
     return dnssec_bool
+
+
+
+# Get the parameter data
+# SvcPriority (0 = AliasMode, 1 or 2 = ServiceMode)
+# ALPN
+# ipv4hint
+# ipv6hint
+# HTTPS RR Default vs Dynamic Config
+# Return types should be covered here: https://dnspython.readthedocs.io/en/2.7/rdata-subclasses.html
+def param_check(HTTPS_List):
+    # Status of parameters SvcPriority, ALPN, ipv4hint, ipv6hint, HTTPS RR Default vs Dynamic Config]
+    # -1 means nothing has been returned
+    param_list = [-1, "-1", "-1", "-1", "-1"] # Strings in case I can't convey status with just numbers
+
+    #Maybe make this a switch statement
+    for rdata in HTTPS_List:
+            # This should just fetch the SvcPriority int number
+            if rdata.priority:
+                param_list[0] = rdata.priority
+            
+            #TODO: all the stuff below here
+            #ALPN
+
+            #ipv4hint
+
+            #ipv6hint
+
+            #HTTPS RR Default vs Dynamic Config
+
+    return param_list
 
 
 
