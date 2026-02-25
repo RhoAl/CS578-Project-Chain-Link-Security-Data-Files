@@ -168,7 +168,6 @@ def param_check(HTTPS_List):
 
     #Maybe make this a switch statement
     for rdata in HTTPS_List:
-            # This should just fetch the SvcPriority int number
         if rdata.priority:
             param_list[0] = int(rdata.priority)
 
@@ -176,7 +175,6 @@ def param_check(HTTPS_List):
             mode = "Alias"
         else:
             mode = "Service"
-        #TODO: all the stuff below here
         params = getattr(rdata, "params", None)
         if len(params) > 0:
             dynamic_config = True
