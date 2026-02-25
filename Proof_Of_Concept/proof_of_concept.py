@@ -147,8 +147,6 @@ def dnssec_check(HTTPS_List):
 
     return dnssec_bool
 
-
-
 # Get the parameter data
 # SvcPriority (0 = AliasMode, 1 or 2 = ServiceMode)
 # ALPN
@@ -158,27 +156,46 @@ def dnssec_check(HTTPS_List):
 # Return types should be covered here: https://dnspython.readthedocs.io/en/2.7/rdata-subclasses.html
 def param_check(HTTPS_List):
     # Status of parameters SvcPriority, ALPN, ipv4hint, ipv6hint, HTTPS RR Default vs Dynamic Config]
+
+    mode = None #SvcPriority mode
+    alpn = False
+    ipv4hint = False
+    ipv6hint = False
+    dynamic_config = False
+
     # -1 means nothing has been returned
     param_list = [-1, "-1", "-1", "-1", "-1"] # Strings in case I can't convey status with just numbers
 
     #Maybe make this a switch statement
     for rdata in HTTPS_List:
             # This should just fetch the SvcPriority int number
-            if rdata.priority:
-                param_list[0] = rdata.priority
-            
-            #TODO: all the stuff below here
-            #ALPN
+        if rdata.priority:
+            param_list[0] = int(rdata.priority)
 
-            #ipv4hint
+        if param_list[0] == 0:
+            mode = "Alias"
+        else:
+            mode = "Service"
+        #TODO: all the stuff below here
+        params = getattr(rdata, "params", None)
+        if len(params) > 0:
+            dynamic_config = True
+            for k in params.items():
+                key = str(k).lower()
+                if "alpn" in key:
+                    alpn = True
+                elif "ipv4hint" in key:
+                    ipv4hint = True
+                elif "ipv6hint" in key:
+                    ipv6hint = True
 
-            #ipv6hint
-
-            #HTTPS RR Default vs Dynamic Config
-
-    return param_list
-
-
+    return {
+        "mode": mode,
+        "alpn": alpn,
+        "ipv4hint": ipv4hint,
+        "ipv6hint": ipv6hint,
+        "dynamic_config": dynamic_config,
+    }
 
 # Check if a domain is using HTTPS protocol
 # Returns the number of domains using HTTPS protocol
@@ -187,25 +204,32 @@ def https_check(domains) :
         HTTPS_List = dns.resolver.resolve(domains, "HTTPS") # It's important to note that resolve returns a special memory object; I think you need to alter it to parse it
         ech_bool = ech_check(HTTPS_List)
         dnssec_bool = dnssec_check(HTTPS_List)
+        params = param_check(HTTPS_List)
 
         # print(HTTPS_List) #Test print of the response
 
-        return len(HTTPS_List) > 0, ech_bool, dnssec_bool
+        return len(HTTPS_List) > 0, ech_bool, dnssec_bool, params
 
     except(dns.resolver.NoAnswer,
             dns.resolver.NXDOMAIN,
             dns.resolver.NoNameservers,
             dns.exception.Timeout):
-        return False, False, False
+        return False, False, False, {}
 
 def main() :
     list_of_domains = grab_list_domain()
     HTTPS_Count = 0 # Domains with HTTPS RR
     ech_count = 0   # Domains with HTTPS + ECH
     https_dnssec_count = 0  # Domains with HTTPS RR + DNSSEC
+    aliasmode_count = 0
+    servicemode_count = 0
+    alpn_count = 0
+    ipv4hint_count = 0
+    ipv6hint_count = 0
+    dynamic_config_count = 0
 
     for domain in list_of_domains:
-        HTTPS_Ans, ech_ans, dnssec_ans = https_check(domain)
+        HTTPS_Ans, ech_ans, dnssec_ans, params = https_check(domain)
 
         if HTTPS_Ans == True :
             HTTPS_Count += 1
@@ -213,6 +237,27 @@ def main() :
                 https_dnssec_count += 1
         if ech_ans == True:
             ech_count += 1
+
+        mode = params.get("mode")
+        if mode == "Alias":
+            aliasmode_count += 1
+        elif mode == "Service":
+            servicemode_count += 1
+
+        alpn = params.get("alpn") or []
+        ipv4hint = params.get("ipv4hint") or []
+        ipv6hint = params.get("ipv6hint") or []
+
+        if alpn:
+            alpn_count += 1
+        if ipv4hint:
+            ipv4hint_count += 1
+        if ipv6hint:
+            ipv6hint_count += 1
+
+        dynamic_config = bool(params.get("dynamic_config", False))
+        if dynamic_config:
+            dynamic_config_count += 1
 
         # raw_https_rr(domain)  # Output raw data
 
@@ -223,10 +268,24 @@ def main() :
     HTTPS_Share = (HTTPS_Count / DOMAIN_COUNT) * 100    # Percentage point with no rounding
     ech_share = (ech_count / DOMAIN_COUNT) * 100
     https_dnssec_share = (https_dnssec_count / DOMAIN_COUNT) * 100
+    aliasmode_share = (aliasmode_count / DOMAIN_COUNT) * 100
+    servicemode_share = (servicemode_count / DOMAIN_COUNT) * 100
+    alpn_share = (alpn_count / DOMAIN_COUNT) * 100
+    ipv4hint_share = (ipv4hint_count / DOMAIN_COUNT) * 100
+    ipv6hint_share = (ipv6hint_count / DOMAIN_COUNT) * 100
+    dynamic_config_share = (dynamic_config_count / DOMAIN_COUNT) * 100
 
     print(f"Share of HTTPS RR: {HTTPS_Share}%")
     print(f"Share of domains with HTTPS RR + ECH: {ech_share}%")
     print(f"Share of HTTPS RR + DNSSEC: {https_dnssec_share}%")
+
+    print("\nParameter usage (among all domains):")
+    print(f"Share of AliasMode: {aliasmode_share}%")
+    print(f"Share of ServiceMode: {servicemode_share}%")
+    print(f"Share of ALPN: {alpn_share}%")
+    print(f"Share of ipv4hint: {ipv4hint_share}%")
+    print(f"Share of ipv6hint: {ipv6hint_share:.1f}%")
+    print(f"Share of Dynamic Config: {dynamic_config_share:.1f}%")
 
     #test prints
     #print(list_of_domains)
