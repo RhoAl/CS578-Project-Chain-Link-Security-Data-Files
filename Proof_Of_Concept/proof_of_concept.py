@@ -118,6 +118,15 @@ def raw_https_rr(domains) :
             dns.exception.Timeout):
         return False
 
+def extract_https_rr_records(HTTPS_List):
+    records = []
+    for rdata in HTTPS_List:
+        records.append({
+            "rdata_text": rdata.to_text(),
+            "priority": int(getattr(rdata, "priority", 0) or 0),
+            "target": str(getattr(rdata, "target", "")),
+        })
+    return records
 
 
 # Check the domains with HTTPS + ech support
@@ -203,19 +212,24 @@ def https_check(domains) :
         ech_bool = ech_check(HTTPS_List)
         dnssec_bool = dnssec_check(HTTPS_List)
         params = param_check(HTTPS_List)
+        records = extract_https_rr_records(HTTPS_List)
 
         # print(HTTPS_List) #Test print of the response
 
-        return len(HTTPS_List) > 0, ech_bool, dnssec_bool, params
+        return len(HTTPS_List) > 0, ech_bool, dnssec_bool, params, records
 
     except(dns.resolver.NoAnswer,
             dns.resolver.NXDOMAIN,
             dns.resolver.NoNameservers,
             dns.exception.Timeout):
-        return False, False, False, {}
+        return False, False, False, {}, []
 
 def main() :
     list_of_domains = grab_list_domain()
+    os.makedirs("output", exist_ok=True)
+    records_path = f"output/https_rr_records.jsonl"
+    summary_path  = f"output/summary.json"
+
     HTTPS_Count = 0 # Domains with HTTPS RR
     ech_count = 0   # Domains with HTTPS + ECH
     https_dnssec_count = 0  # Domains with HTTPS RR + DNSSEC
@@ -227,38 +241,48 @@ def main() :
     ipv6hint_count = 0
     dynamic_config_count = 0
 
-    for domain in list_of_domains:
-        HTTPS_Ans, ech_ans, dnssec_ans, params = https_check(domain)
+    with open(records_path, "w", encoding="utf-8") as rec_f:
+        for domain in list_of_domains:
+            HTTPS_Ans, ech_ans, dnssec_ans, params, records = https_check(domain)
 
-        if HTTPS_Ans == True :
-            HTTPS_Count += 1
-            if dnssec_ans == True:
-                https_dnssec_count += 1
-        if ech_ans == True:
-            ech_count += 1
-        if HTTPS_Ans and ech_ans and dnssec_ans:
-            https_ech_dnssec_count += 1
+            if HTTPS_Ans == True :
+                HTTPS_Count += 1
+                if dnssec_ans == True:
+                    https_dnssec_count += 1
+            if ech_ans == True:
+                ech_count += 1
+            if HTTPS_Ans and ech_ans and dnssec_ans:
+                https_ech_dnssec_count += 1
 
-        mode = params.get("mode")
-        if mode == "Alias":
-            aliasmode_count += 1
-        elif mode == "Service":
-            servicemode_count += 1
+            mode = params.get("mode")
+            if mode == "Alias":
+                aliasmode_count += 1
+            elif mode == "Service":
+                servicemode_count += 1
 
-        alpn = params.get("alpn") or []
-        ipv4hint = params.get("ipv4hint") or []
-        ipv6hint = params.get("ipv6hint") or []
-
-        if alpn:
-            alpn_count += 1
-        if ipv4hint:
-            ipv4hint_count += 1
-        if ipv6hint:
-            ipv6hint_count += 1
-
-        dynamic_config = bool(params.get("dynamic_config", False))
-        if dynamic_config:
-            dynamic_config_count += 1
+            alpn = params.get("alpn") or []
+            ipv4hint = params.get("ipv4hint") or []
+            ipv6hint = params.get("ipv6hint") or []
+            if alpn:
+                alpn_count += 1
+            if ipv4hint:
+                ipv4hint_count += 1
+            if ipv6hint:
+                ipv6hint_count += 1
+            dynamic_config = bool(params.get("dynamic_config", False))
+            if dynamic_config:
+                dynamic_config_count += 1
+            
+            row = {
+                "domain": domain,
+                "has_https_rr": HTTPS_Ans,
+                "rr_count": len(records),
+                "ech_present": ech_ans,
+                "dnssec_present": dnssec_ans,
+                "param_flags": params,
+                "records": records,
+            }
+            rec_f.write(json.dumps(row, ensure_ascii=False) + "\n")
 
         # raw_https_rr(domain)  # Output raw data
 
@@ -266,35 +290,62 @@ def main() :
     # In the final version of the program
     # we'll want write this to an external file,
     # like an csv file, while also dating this.
-    HTTPS_Share = (HTTPS_Count / DOMAIN_COUNT) * 100    # Percentage point with no rounding
-    ech_share = (ech_count / DOMAIN_COUNT) * 100
-    https_dnssec_share = (https_dnssec_count / DOMAIN_COUNT) * 100
-    https_ech_dnssec_share = (https_ech_dnssec_count / DOMAIN_COUNT) * 100
-    aliasmode_share = (aliasmode_count / DOMAIN_COUNT) * 100
-    servicemode_share = (servicemode_count / DOMAIN_COUNT) * 100
-    alpn_share = (alpn_count / DOMAIN_COUNT) * 100
-    ipv4hint_share = (ipv4hint_count / DOMAIN_COUNT) * 100
-    ipv6hint_share = (ipv6hint_count / DOMAIN_COUNT) * 100
-    dynamic_config_share = (dynamic_config_count / DOMAIN_COUNT) * 100
+    def share(x): 
+        return (x / DOMAIN_COUNT) * 100
 
-    print(f"Share of HTTPS RR: {HTTPS_Share}%")
-    print(f"Share of domains with HTTPS RR + ECH: {ech_share}%")
-    print(f"Share of HTTPS RR + DNSSEC: {https_dnssec_share}%")
-    print(f"Share of HTTPS RR + ECH + DNSSEC: {https_dnssec_share}%")
+    summary = {
+        "domain_count": DOMAIN_COUNT,
 
-    print("\nParameter usage (among all domains):")
-    print(f"Share of AliasMode: {aliasmode_share}%")
-    print(f"Share of ServiceMode: {servicemode_share}%")
-    print(f"Share of ALPN: {alpn_share}%")
-    print(f"Share of ipv4hint: {ipv4hint_share}%")
-    print(f"Share of ipv6hint: {ipv6hint_share:.1f}%")
-    print(f"Share of Dynamic Config: {dynamic_config_share:.1f}%")
+        "counts": {
+            "https_count": HTTPS_Count,
+            "https_ech_count": ech_count,
+            "https_dnssec_count": https_dnssec_count,
+            "https_ech_dnssec_count": https_ech_dnssec_count,
+            "aliasmode_count": aliasmode_count,
+            "servicemode_count": servicemode_count,
+            "alpn_count": alpn_count,
+            "ipv4hint_count": ipv4hint_count,
+            "ipv6hint_count": ipv6hint_count,
+            "dynamic_config_count": dynamic_config_count,
+        },
+        "shares_percent": {
+            "https_share": share(HTTPS_Count),
+            "https_ech_share": share(ech_count),
+            "https_dnssec_share": share(https_dnssec_count),
+            "https_ech_dnssec_share": share(https_ech_dnssec_count),
+            "aliasmode_share": share(aliasmode_count),
+            "servicemode_share": share(servicemode_count),
+            "alpn_share": share(alpn_count),
+            "ipv4hint_share": share(ipv4hint_count),
+            "ipv6hint_share": share(ipv6hint_count),
+            "dynamic_config_share": share(dynamic_config_count),
+        },
+    }
+
+    #print(f"Share of HTTPS RR: {HTTPS_Share}%")
+    #print(f"Share of domains with HTTPS RR + ECH: {ech_share}%")
+    #print(f"Share of HTTPS RR + DNSSEC: {https_dnssec_share}%")
+    #print(f"Share of HTTPS RR + ECH + DNSSEC: {https_dnssec_share}%")
+
+    #print("\nParameter usage (among all domains):")
+    #print(f"Share of AliasMode: {aliasmode_share}%")
+    #print(f"Share of ServiceMode: {servicemode_share}%")
+    #print(f"Share of ALPN: {alpn_share}%")
+    #print(f"Share of ipv4hint: {ipv4hint_share}%")
+    #print(f"Share of ipv6hint: {ipv6hint_share:.1f}%")
+    #print(f"Share of Dynamic Config: {dynamic_config_share:.1f}%")
 
     #test prints
     #print(list_of_domains)
     #print(HTTPS_Count) # 51 domains with HTTPS RR
     #print(ech_count)
     #print(https_dnssec_count)
+
+    with open(summary_path, "w", encoding="utf-8") as sum_f:
+        json.dump(summary, sum_f, indent=2, ensure_ascii=False)
+
+    print(f"Wrote per-domain records to: {records_path}")
+    print(f"Wrote summary metrics to:    {summary_path}")
 
     return 0
 
