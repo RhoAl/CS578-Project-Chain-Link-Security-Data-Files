@@ -219,6 +219,7 @@ def main() :
     HTTPS_Count = 0 # Domains with HTTPS RR
     ech_count = 0   # Domains with HTTPS + ECH
     https_dnssec_count = 0  # Domains with HTTPS RR + DNSSEC
+    https_ech_dnssec_count = 0  # Domains with HTTPS RR + ECH + DNSSEC
     aliasmode_count = 0
     servicemode_count = 0
     alpn_count = 0
@@ -235,6 +236,8 @@ def main() :
                 https_dnssec_count += 1
         if ech_ans == True:
             ech_count += 1
+        if HTTPS_Ans and ech_ans and dnssec_ans:
+            https_ech_dnssec_count += 1
 
         mode = params.get("mode")
         if mode == "Alias":
@@ -266,6 +269,7 @@ def main() :
     HTTPS_Share = (HTTPS_Count / DOMAIN_COUNT) * 100    # Percentage point with no rounding
     ech_share = (ech_count / DOMAIN_COUNT) * 100
     https_dnssec_share = (https_dnssec_count / DOMAIN_COUNT) * 100
+    https_ech_dnssec_share = (https_ech_dnssec_count / DOMAIN_COUNT) * 100
     aliasmode_share = (aliasmode_count / DOMAIN_COUNT) * 100
     servicemode_share = (servicemode_count / DOMAIN_COUNT) * 100
     alpn_share = (alpn_count / DOMAIN_COUNT) * 100
@@ -276,6 +280,7 @@ def main() :
     print(f"Share of HTTPS RR: {HTTPS_Share}%")
     print(f"Share of domains with HTTPS RR + ECH: {ech_share}%")
     print(f"Share of HTTPS RR + DNSSEC: {https_dnssec_share}%")
+    print(f"Share of HTTPS RR + ECH + DNSSEC: {https_dnssec_share}%")
 
     print("\nParameter usage (among all domains):")
     print(f"Share of AliasMode: {aliasmode_share}%")
