@@ -308,7 +308,7 @@ def main() :
             "ipv6hint_count": ipv6hint_count,
             "dynamic_config_count": dynamic_config_count,
         },
-        "shares_percent": {
+        "shares_percent (%)": {
             "https_share": share(HTTPS_Count),
             "https_ech_share": share(ech_count),
             "https_dnssec_share": share(https_dnssec_count),
