@@ -1,6 +1,12 @@
 # This is meant to carry all the output functions
 # Until then, I'm going to code them in main - Alex
 
+# This was prob a bad idea, might delete later
+import json
+
+DOMAIN_COUNT = 10000  
+
+
     
 # Share among domains
 def share(x): 
