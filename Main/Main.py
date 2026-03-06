@@ -56,18 +56,18 @@ TRANCO_FILEPATH = "tranco_GVWZK.csv"  # 10,000 domain list for the range of 01/0
 
 # 10,000 domain monthly tranco lists of the year 2025
 # TODO: I'll make these filenames sane later
-TRANCO_JAN = ".\Monthly_CSV\\01-Jan\\tranco_L76Y4.csv"
-TRANCO_FEB = ".\Monthly_CSV\\02-Feb\\tranco_8LYJV.csv"
-TRANCO_MAR = ".\Monthly_CSV\\03-Mar\\tranco_W4X99.csv"
-TRANCO_APRIL = ".\Monthly_CSV\\04-April\\tranco_9WYN2.csv"
-TRANCO_MAY = ".\Monthly_CSV\\05-May\\tranco_QWLN4.csv"
-TRANCO_JUNE = ".\Monthly_CSV\\06-June\\tranco_KW62W.csv"
-TRANCO_JULY = ".\Monthly_CSV\\07-July\\tranco_VQGXN.csv"
-TRANCO_AUG = ".\Monthly_CSV\\08-Aug\\tranco_GV4ZK.csv"
-TRANCO_SEP = ".\Monthly_CSV\\09-Sep\\tranco_2NQ59.csv"
-TRANCO_OCT = ".\Monthly_CSV\\10-Oct\\tranco_X425N.csv"
-TRANCO_NOV = ".\Monthly_CSV\\11-Nov\\tranco_4NZKX.csv"
-TRANCO_DEC = ".\Monthly_CSV\\12-Dec\\tranco_5XNYN.csv"
+# TRANCO_JAN = ".\Monthly_CSV\\01-Jan\\tranco_L76Y4.csv"
+# TRANCO_FEB = ".\Monthly_CSV\\02-Feb\\tranco_8LYJV.csv"
+# TRANCO_MAR = ".\Monthly_CSV\\03-Mar\\tranco_W4X99.csv"
+# TRANCO_APRIL = ".\Monthly_CSV\\04-April\\tranco_9WYN2.csv"
+# TRANCO_MAY = ".\Monthly_CSV\\05-May\\tranco_QWLN4.csv"
+# TRANCO_JUNE = ".\Monthly_CSV\\06-June\\tranco_KW62W.csv"
+# TRANCO_JULY = ".\Monthly_CSV\\07-July\\tranco_VQGXN.csv"
+# TRANCO_AUG = ".\Monthly_CSV\\08-Aug\\tranco_GV4ZK.csv"
+# TRANCO_SEP = ".\Monthly_CSV\\09-Sep\\tranco_2NQ59.csv"
+# TRANCO_OCT = ".\Monthly_CSV\\10-Oct\\tranco_X425N.csv"
+# TRANCO_NOV = ".\Monthly_CSV\\11-Nov\\tranco_4NZKX.csv"
+# TRANCO_DEC = ".\Monthly_CSV\\12-Dec\\tranco_5XNYN.csv"
 
 DOMAIN_COUNT = 10000  #Number of domains in the tranco list
 # EXTERNAL_FILE_MODE = False  # Bool to decide if functions write to external files; for testing (might end up with a ton of files if always on) 
@@ -235,6 +235,50 @@ def https_check(domains) :
             dns.resolver.NoNameservers,
             dns.exception.Timeout):
         return False, False, False, {}, []
+
+
+# Taking the output from the main output, and putting it in a function
+# TODO: actually finish these Functions
+# TODO: Put them all in an external file and import them
+def output_yearly_list():
+    pass
+
+# A whole bunch of monthly list output functions
+def output_jan_list():
+    pass
+
+def output_feb_list():
+    pass
+
+def output_mar_list():
+    pass
+
+def output_april_list():
+    pass
+
+def output_may_list():
+    pass
+
+def output_june_list():
+    pass
+
+def output_july_list():
+    pass
+
+def output_aug_list():
+    pass
+
+def output_sep_list():
+    pass
+
+def output_oct_list():
+    pass
+
+def output_nov_list():
+    pass
+
+def output_dec_list():
+    pass
 
 def main() :
     list_of_domains = grab_list_domain()
