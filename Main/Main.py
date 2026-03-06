@@ -51,7 +51,7 @@ import csv
 import requests
 
 
-# TRANCO_FILEPATH = "tranco_ZWZGG.csv" # File name for the tranco list
+TRANCO_TEST_PATH = "tranco_ZWZGG.csv" # File name for the tranco list
 TRANCO_FILEPATH = "tranco_GVWZK.csv"  # 10,000 domain list for the range of 01/01/2025 - 01/01/2026
 
 # 10,000 domain monthly tranco lists of the year 2025
@@ -247,7 +247,7 @@ def write_JSON():
 # Taking the output from the main output, and putting it in a function
 # TODO: actually finish these Functions
 # TODO: Put them all in an external file and import them
-def output_yearly_list(records_path, summary_path, list_of_domains):
+def output_list(records_path, summary_path, list_of_domains):
     # TODO: figure out the parameters
     with open(records_path, "w", encoding="utf-8") as rec_f:
         for domain in list_of_domains:
@@ -336,6 +336,11 @@ def output_yearly_list(records_path, summary_path, list_of_domains):
 
     print(f"Wrote per-domain records to: {records_path}")
     print(f"Wrote summary metrics to:    {summary_path}")
+
+# Make all the outputs at once
+# Might be a bad idea
+def murderers_row():
+    pass
 
 # A whole bunch of monthly list output functions
 def output_jan_list():
