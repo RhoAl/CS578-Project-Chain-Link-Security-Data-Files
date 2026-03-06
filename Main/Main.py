@@ -52,7 +52,23 @@ import requests
 
 
 # TRANCO_FILEPATH = "tranco_ZWZGG.csv" # File name for the tranco list
-TRANCO_FILEPATH = "tranco_GVWZK.csv"  # 10,000 domain list
+TRANCO_FILEPATH = "tranco_GVWZK.csv"  # 10,000 domain list for the range of 01/01/2025 - 01/01/2026
+
+# 10,000 domain monthly tranco lists of the year 2025
+# TODO: I'll make these filenames sane later
+TRANCO_JAN = ".\Monthly_CSV\\01-Jan\\tranco_L76Y4.csv"
+TRANCO_FEB = ".\Monthly_CSV\\02-Feb\\tranco_8LYJV.csv"
+TRANCO_MAR = ".\Monthly_CSV\\03-Mar\\tranco_W4X99.csv"
+TRANCO_APRIL = ".\Monthly_CSV\\04-April\\tranco_9WYN2.csv"
+TRANCO_MAY = ".\Monthly_CSV\\05-May\\tranco_QWLN4.csv"
+TRANCO_JUNE = ".\Monthly_CSV\\06-June\\tranco_KW62W.csv"
+TRANCO_JULY = ".\Monthly_CSV\\07-July\\tranco_VQGXN.csv"
+TRANCO_AUG = ".\Monthly_CSV\\08-Aug\\tranco_GV4ZK.csv"
+TRANCO_SEP = ".\Monthly_CSV\\09-Sep\\tranco_2NQ59.csv"
+TRANCO_OCT = ".\Monthly_CSV\\10-Oct\\tranco_X425N.csv"
+TRANCO_NOV = ".\Monthly_CSV\\11-Nov\\tranco_4NZKX.csv"
+TRANCO_DEC = ".\Monthly_CSV\\12-Dec\\tranco_5XNYN.csv"
+
 DOMAIN_COUNT = 10000  #Number of domains in the tranco list
 # EXTERNAL_FILE_MODE = False  # Bool to decide if functions write to external files; for testing (might end up with a ton of files if always on) 
 # Seems like external file mode is always on; we probably don't need to make this particularly modular
@@ -65,6 +81,8 @@ DOMAIN_COUNT = 10000  #Number of domains in the tranco list
 #TODO: Compare values to existing work (DNSSEC is the big difference in data, which they talk about on page 9 of Dong et al.) 
 #Blog discussing it from 2025: https://netlas.io/blog/what_is_dnssec/#:~:text=DNSSEC%20does%20not%20protect%20against,responses%20by%20removing%20DNSSEC%20configuration
 #TODO: Pull an additional analysis method out of a hat
+#TODO: Fix the DNSSEC retrieval method
+#TODO: Reconfigure the output to retrevie from each csv list specified
 
 # Honestly, the way we grab is pretty good, no need to change it
 # We just had trouble explaining to the professor at the time
