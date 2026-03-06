@@ -58,9 +58,12 @@ DOMAIN_COUNT = 10000  #Number of domains in the tranco list
 # Seems like external file mode is always on; we probably don't need to make this particularly modular
 # We could just leave them as JSON files
 
+#Date range is top 10,000 domains of 01/01/2025 to 12/31/2025
+
 #TODO: Figure out a way to deal with domains with identical destinations, or if we even want to do anything about it (Forget it)
 #TODO: Analyze results
-#TODO: Compare values to existing work (DNSSEC is the big difference in data, which they talk about on page 9 of Dong et al.)
+#TODO: Compare values to existing work (DNSSEC is the big difference in data, which they talk about on page 9 of Dong et al.) 
+#Blog discussing it from 2025: https://netlas.io/blog/what_is_dnssec/#:~:text=DNSSEC%20does%20not%20protect%20against,responses%20by%20removing%20DNSSEC%20configuration
 #TODO: Pull an additional analysis method out of a hat
 
 # Honestly, the way we grab is pretty good, no need to change it
