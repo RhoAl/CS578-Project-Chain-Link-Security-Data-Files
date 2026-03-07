@@ -69,12 +69,15 @@ TRANCO_NOV = "./Monthly_CSV/11-Nov/tranco_nov.csv"
 TRANCO_DEC = "./Monthly_CSV/12-Dec/tranco_dec.csv"
 
 #Will run queries in three list chunks, just to reduce potential for incomplete data
+# Should have set up a contingency for
+# Which domain count to use
 DOMAIN_COUNT = 10000  #Number of domains in the tranco list
-TEST_BOOL = True    # Just determines if we're running a test with the 500 domain list or not
-JAN_MAR = False
-APRIL_JUNE = False
-JULY_SEP = False
-OCT_DEC = False
+# DOMAIN_COUNT = 500 #Number of domains in the test list
+TEST_BOOL = False    # Just determines if we're running a test with the 500 domain list or not
+JAN_MAR = True
+APRIL_JUNE = True
+JULY_SEP = True
+OCT_DEC = True
 
 # EXTERNAL_FILE_MODE = False  # Bool to decide if functions write to external files; for testing (might end up with a ton of files if always on) 
 # Seems like external file mode is always on; we probably don't need to make this particularly modular
@@ -89,10 +92,25 @@ OCT_DEC = False
 #TODO: Pull an additional analysis method out of a hat
 #TODO: Fix the DNSSEC retrieval method
 #TODO: Reconfigure the output to retrevie from each csv list specified
+#TODO: Tranco messed up the output of the monthly lists; I'm going to have to either keep count of the domains per list, or fix it some how
 
-# Honestly, the way we grab is pretty good, no need to change it
-# We just had trouble explaining to the professor at the time
 
+# Did a bunch of compliance printing
+# That might actually cause some performance issues
+
+
+# Example code for counting csv rows
+# def count_csv_rows(filename):
+#     with open(filename, 'r', newline='', encoding='utf-8') as file:
+#         reader = csv.reader(file)
+#         # Count all rows (including header)
+#         row_count = sum(1 for row in reader)
+#         return row_count
+
+# # Example usage:
+# file_path = 'your_file.csv'
+# total_rows = count_csv_rows(file_path)
+# print(f"Total number of rows: {total_rows}")
 
 
 # Grab the domains from the tranco list
@@ -163,14 +181,33 @@ def ech_check(HTTPS_List):
 #TODO: Fix our method for finding this
 # When checking for DNSSEC via the AD flag instead of just RRSIG, it seems you need a dedicated DNSSEC-validating resolver, like Cloudflare
 # This might take quite awhile. For right now, it's probably better to just check for the presesence of RRSIGs
-def dnssec_check(HTTPS_List):
-    dnssec_bool = False
+# def dnssec_check(HTTPS_List):
+#     dnssec_bool = False
 
-    for rrset in HTTPS_List.response.answer:
-        if rrset.rdtype == dns.rdatatype.RRSIG:
-            dnssec_bool = True
+#     for rrset in HTTPS_List.response.answer:
+#         if rrset.rdtype == dns.rdatatype.RRSIG:
+#             dnssec_bool = True
 
-    return dnssec_bool
+#     return dnssec_bool
+
+# Alternative method for checking for DNSSEC based on what got posted to the Discord
+def dnssec_check(domain):
+    try:
+        resolver = dns.resolver.Resolver()
+
+        request = dns.message.make_query(domain, dns.rdatatype.A, want_dnssec=True)
+
+        response = dns.query.udp(request, resolver.nameservers[0])
+
+        for rrset in response.answer:
+            if rrset.rdtype == dns.rdatatype.RRSIG:
+                return True
+
+        return False
+
+    except Exception:
+        return False
+    
 
 # Get the parameter data
 # SvcPriority (0 = AliasMode, 1 or 2 = ServiceMode)
@@ -267,7 +304,7 @@ def output_list(records_path, summary_path, list_of_domains):
     ipv6hint_count = 0
     dynamic_config_count = 0
     count = 0
-    
+
     # os.makedirs(records_path, exist_ok=True)
     os.makedirs(os.path.dirname(records_path), exist_ok=True)
 
