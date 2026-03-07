@@ -71,19 +71,22 @@ TRANCO_DEC = "./Monthly_CSV/12-Dec/tranco_dec.csv"
 #Will run queries in three list chunks, just to reduce potential for incomplete data
 # Should have set up a contingency for
 # Which domain count to use
+TEST_DOMAIN_COUNT = 500 #Isn't attatched to anything yet
 DOMAIN_COUNT = 10000  #Number of domains in the tranco list
 # DOMAIN_COUNT = 500 #Number of domains in the test list
 TEST_BOOL = False    # Just determines if we're running a test with the 500 domain list or not
+YEAR_BOOL = True # Determines if we extract the yearly 10,000 domain list
+JUST_JAN = False #Just test January's list
 JAN_MAR = True
-APRIL_JUNE = True
-JULY_SEP = True
-OCT_DEC = True
+APRIL_JUNE = False
+JULY_SEP = False
+OCT_DEC = False
 
 # EXTERNAL_FILE_MODE = False  # Bool to decide if functions write to external files; for testing (might end up with a ton of files if always on) 
 # Seems like external file mode is always on; we probably don't need to make this particularly modular
 # We could just leave them as JSON files
 
-#Date range is top 10,000 domains of 01/01/2025 to 12/31/2025
+#Yearly list is top 10,000 domains of 01/01/2025 to 12/31/2025
 
 #TODO: Figure out a way to deal with domains with identical destinations, or if we even want to do anything about it (Forget it)
 #TODO: Analyze results
@@ -91,8 +94,7 @@ OCT_DEC = True
 #Blog discussing it from 2025: https://netlas.io/blog/what_is_dnssec/#:~:text=DNSSEC%20does%20not%20protect%20against,responses%20by%20removing%20DNSSEC%20configuration
 #TODO: Pull an additional analysis method out of a hat
 #TODO: Fix the DNSSEC retrieval method
-#TODO: Reconfigure the output to retrevie from each csv list specified
-#TODO: Tranco messed up the output of the monthly lists; I'm going to have to either keep count of the domains per list, or fix it some how
+#TODO: Reconfigure the output to retrieve from each csv list specified
 
 
 # Did a bunch of compliance printing
@@ -181,31 +183,35 @@ def ech_check(HTTPS_List):
 #TODO: Fix our method for finding this
 # When checking for DNSSEC via the AD flag instead of just RRSIG, it seems you need a dedicated DNSSEC-validating resolver, like Cloudflare
 # This might take quite awhile. For right now, it's probably better to just check for the presesence of RRSIGs
-# def dnssec_check(HTTPS_List):
-#     dnssec_bool = False
 
-#     for rrset in HTTPS_List.response.answer:
-#         if rrset.rdtype == dns.rdatatype.RRSIG:
-#             dnssec_bool = True
-
-#     return dnssec_bool
-
-# Alternative method for checking for DNSSEC based on what got posted to the Discord
 def dnssec_check(domain):
     try:
         resolver = dns.resolver.Resolver()
 
+        # Apperently a DNSSEC-validating resolver to prevent the local ISP stripping info
+        resolver.nameservers = ['1.1.1.1', '8.8.8.8'] 
+
         request = dns.message.make_query(domain, dns.rdatatype.A, want_dnssec=True)
+        
+        #response = dns.query.udp(request, resolver.nameservers[0], timeout=3)
+        response = dns.query.udp(request, resolver.nameservers[0])  # Trying a version without timeout
 
-        response = dns.query.udp(request, resolver.nameservers[0])
+        # Actually checking for  the AD Flag and the RRSIG record
 
+        # Doing the bit to check for the AD flag
+        if response.flags & dns.flags.AD:
+            return True
+
+        # RRSIG check
         for rrset in response.answer:
             if rrset.rdtype == dns.rdatatype.RRSIG:
                 return True
 
         return False
 
-    except Exception:
+    except Exception as e:
+        # It's usually good practice to log 'e' during testing so bugs don't hide
+        # print(f"DNSSEC Error for {domain}: {e}") 
         return False
     
 
@@ -233,12 +239,20 @@ def param_check(HTTPS_List):
         if rdata.priority:
             priority_num = int(rdata.priority)
 
+        # I think I doing this part wrong, so let's go with the old method
+        # if priority_num == 0:
+        #     mode = "Alias"
+        # elif priority_num > 0 and priority_num <= 2:
+        #     mode = "Service"
+        # else:
+        #     mode = "Invalid"    #Kind of an error catch
+
         if priority_num == 0:
             mode = "Alias"
-        elif priority_num > 0 and priority_num <= 2:
-            mode = "Service"
         else:
-            mode = "Invalid"    #Kind of an error catch
+            mode = "Service"
+
+
         params = getattr(rdata, "params", None)
         if len(params) > 0:
             dynamic_config = True
@@ -261,15 +275,36 @@ def param_check(HTTPS_List):
 
 # Check if a domain is using HTTPS protocol
 # Returns the number of domains using HTTPS protocol
+# def https_check(domains) :
+#     try:
+#         HTTPS_List = dns.resolver.resolve(domains, "HTTPS") # It's important to note that resolve returns a special memory object; I think you need to alter it to parse it
+#         ech_bool = ech_check(HTTPS_List)
+#         dnssec_bool = dnssec_check(HTTPS_List)
+#         params = param_check(HTTPS_List)
+#         records = extract_https_rr_records(HTTPS_List)
+
+#         # print(HTTPS_List) #Test print of the response
+
+#         return len(HTTPS_List) > 0, ech_bool, dnssec_bool, params, records
+
+#     except(dns.resolver.NoAnswer,
+#             dns.resolver.NXDOMAIN,
+#             dns.resolver.NoNameservers,
+#             dns.exception.Timeout):
+#         return False, False, False, {}, []
+
+
+
 def https_check(domains) :
     try:
-        HTTPS_List = dns.resolver.resolve(domains, "HTTPS") # It's important to note that resolve returns a special memory object; I think you need to alter it to parse it
+        HTTPS_List = dns.resolver.resolve(domains, "HTTPS") 
         ech_bool = ech_check(HTTPS_List)
-        dnssec_bool = dnssec_check(HTTPS_List)
+        
+        # FIX: Pass the 'domains' string, not the 'HTTPS_List' answer object
+        dnssec_bool = dnssec_check(domains) 
+        
         params = param_check(HTTPS_List)
         records = extract_https_rr_records(HTTPS_List)
-
-        # print(HTTPS_List) #Test print of the response
 
         return len(HTTPS_List) > 0, ech_bool, dnssec_bool, params, records
 
@@ -278,15 +313,14 @@ def https_check(domains) :
             dns.resolver.NoNameservers,
             dns.exception.Timeout):
         return False, False, False, {}, []
-    
+
+
+
 # Share among domains
 def share(x): 
     return (x / DOMAIN_COUNT) * 100
 
-# Helper function for writing the json files
-# Prob not needed
-def write_JSON():
-    pass
+
 
 # Taking the output from the main output, and putting it in a function
 # TODO: actually finish these Functions
@@ -409,13 +443,14 @@ def main() :
 
     #Running a set of bool checks (prob could just make a switch, note for next time)
     if (TEST_BOOL == False):
-        list_of_domains = grab_list_domain(TRANCO_FILEPATH)
+        if (YEAR_BOOL):
+            list_of_domains = grab_list_domain(TRANCO_FILEPATH)
 
-        records_path = f"output/https_rr_records.jsonl"
-        summary_path  = f"output/summary.json"
+            records_path = f"output/https_rr_records.jsonl"
+            summary_path  = f"output/summary.json"
 
-        print("Retrieving Yearly Record...\n")
-        output_list(records_path, summary_path, list_of_domains)
+            print("Retrieving Yearly Record...\n")
+            output_list(records_path, summary_path, list_of_domains)
 
         if (JAN_MAR):
             list_jan = grab_list_domain(TRANCO_JAN)
@@ -508,150 +543,18 @@ def main() :
 
         print("Retrieving Test Record...\n")
         output_list(test_path, test_sum_path, list_test)
-        
 
-    # os.makedirs("output", exist_ok=True)
+    #Sorta just testing the monthly retrieval here  
+    if (JUST_JAN):
+        list_jan = grab_list_domain(TRANCO_JAN)
 
-    # records_path = f"output/https_rr_records.jsonl"
-    # summary_path  = f"output/summary.json"
-    # test_path = f"output/test/test_rr_records.jsonl"
-    # test_sum_path = f"output/test/test_summary.jsonl"
+        jan_path = f"output/jan/jan_rr_records.jsonl"
+        jan_sum_path = f"output/jan/jan_summary.jsonl"
 
-    # #Monthly Path Block
-    # jan_path = f"output/jan/jan_rr_records.jsonl"
-    # jan_sum_path = f"output/jan/jan_summary.jsonl"
-    # feb_path = f"output/feb/feb_rr_records.jsonl"
-    # feb_sum_path = f"output/feb/feb_summary.jsonl"
-    # mar_path = f"output/mar/mar_rr_records.jsonl"
-    # mar_sum_path = f"output/mar/mar_summary.jsonl"
-    # april_path = f"output/april/april_rr_records.jsonl"
-    # april_sum_path = f"output/april/april_summary.jsonl"
-    # may_path = f"output/may/may_rr_records.jsonl"
-    # may_sum_path = f"output/may/may_summary.jsonl"
-    # june_path = f"output/june/june_rr_records.jsonl"
-    # june_sum_path = f"output/june/june_summary.jsonl"
-    # july_path = f"output/july/july_rr_records.jsonl"
-    # july_sum_path = f"output/july/july_summary.jsonl"
-    # aug_path = f"output/aug/aug_rr_records.jsonl"
-    # aug_sum_path = f"output/aug/aug_summary.jsonl"
-    # sep_path = f"output/sep/sep_rr_records.jsonl"
-    # sep_sum_path = f"output/sep/sep_summary.jsonl"
-    # oct_path = f"output/oct/oct_rr_records.jsonl"
-    # oct_sum_path = f"output/oct/oct_summary.jsonl"
-    # nov_path = f"output/nov/nov_rr_records.jsonl"
-    # nov_sum_path = f"output/nov/nov_summary.jsonl"
-    # dec_path = f"output/dec/dec_rr_records.jsonl"
-    # dec_sum_path = f"output/dec/dec_summary.jsonl"
+        print("Retrieving January Record...\n")
+        output_list(jan_path, jan_sum_path, list_jan)
+
     
-
-    #TODO: Call the functions that extracts the yearly data + monthly data 
-    #output_list(records_path, summary_path, list_of_domains)
-
-    #Call a test
-    # output_list(test_path, test_sum_path, list_test)
-
-    # HTTPS_Count = 0 # Domains with HTTPS RR
-    # ech_count = 0   # Domains with HTTPS + ECH
-    # https_dnssec_count = 0  # Domains with HTTPS RR + DNSSEC
-    # https_ech_dnssec_count = 0  # Domains with HTTPS RR + ECH + DNSSEC
-    # aliasmode_count = 0
-    # servicemode_count = 0
-    # alpn_count = 0
-    # ipv4hint_count = 0
-    # ipv6hint_count = 0
-    # dynamic_config_count = 0
-
-    # # Just a compliance thing
-    # print("Retrieving Records...")
-    # count = 0
-    
-    # with open(records_path, "w", encoding="utf-8") as rec_f:
-    #     for domain in list_of_domains:
-    #         # Checking progress if we have to rerecord data
-    #         count += 1
-    #         print(f"Recording record {count}")
-
-    #         HTTPS_Ans, ech_ans, dnssec_ans, params, records = https_check(domain)
-
-    #         if HTTPS_Ans == True :
-    #             HTTPS_Count += 1
-    #             if dnssec_ans == True:
-    #                 https_dnssec_count += 1
-    #         if ech_ans == True:
-    #             ech_count += 1
-    #         if HTTPS_Ans and ech_ans and dnssec_ans:
-    #             https_ech_dnssec_count += 1
-
-    #         mode = params.get("mode")
-    #         if mode == "Alias":
-    #             aliasmode_count += 1
-    #         elif mode == "Service":
-    #             servicemode_count += 1
-
-    #         alpn = params.get("alpn") or []
-    #         ipv4hint = params.get("ipv4hint") or []
-    #         ipv6hint = params.get("ipv6hint") or []
-    #         if alpn:
-    #             alpn_count += 1
-    #         if ipv4hint:
-    #             ipv4hint_count += 1
-    #         if ipv6hint:
-    #             ipv6hint_count += 1
-    #         dynamic_config = bool(params.get("dynamic_config", False))
-    #         if dynamic_config:
-    #             dynamic_config_count += 1
-            
-    #         row = {
-    #             "domain": domain,
-    #             "has_https_rr": HTTPS_Ans,
-    #             "rr_count": len(records),
-    #             "ech_present": ech_ans,
-    #             "dnssec_present": dnssec_ans,
-    #             "param_flags": params,
-    #             "records": records,
-    #         }
-    #         rec_f.write(json.dumps(row, ensure_ascii=False) + "\n")
-
-    #         print(f"Record {count} recorded")   # Finished iteration
-
-    #     # raw_https_rr(domain)  # Output raw data
-
-    # print("Records retrieved")
-
-    # summary = {
-    #     "domain_count": DOMAIN_COUNT,
-
-    #     "counts": {
-    #         "https_count": HTTPS_Count,
-    #         "https_ech_count": ech_count,
-    #         "https_dnssec_count": https_dnssec_count,
-    #         "https_ech_dnssec_count": https_ech_dnssec_count,
-    #         "aliasmode_count": aliasmode_count,
-    #         "servicemode_count": servicemode_count,
-    #         "alpn_count": alpn_count,
-    #         "ipv4hint_count": ipv4hint_count,
-    #         "ipv6hint_count": ipv6hint_count,
-    #         "dynamic_config_count": dynamic_config_count,
-    #     },
-    #     "shares_percent (%)": {
-    #         "https_share": share(HTTPS_Count),
-    #         "https_ech_share": share(ech_count),
-    #         "https_dnssec_share": share(https_dnssec_count),
-    #         "https_ech_dnssec_share": share(https_ech_dnssec_count),
-    #         "aliasmode_share": share(aliasmode_count),
-    #         "servicemode_share": share(servicemode_count),
-    #         "alpn_share": share(alpn_count),
-    #         "ipv4hint_share": share(ipv4hint_count),
-    #         "ipv6hint_share": share(ipv6hint_count),
-    #         "dynamic_config_share": share(dynamic_config_count),
-    #     },
-    # }
-
-    # with open(summary_path, "w", encoding="utf-8") as sum_f:
-    #     json.dump(summary, sum_f, indent=2, ensure_ascii=False)
-
-    # print(f"Wrote per-domain records to: {records_path}")
-    # print(f"Wrote summary metrics to:    {summary_path}")
 
     return 0
 
