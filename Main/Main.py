@@ -75,12 +75,14 @@ TEST_DOMAIN_COUNT = 500 #Isn't attatched to anything yet
 DOMAIN_COUNT = 10000  #Number of domains in the tranco list
 # DOMAIN_COUNT = 500 #Number of domains in the test list
 TEST_BOOL = False    # Just determines if we're running a test with the 500 domain list or not
-YEAR_BOOL = True # Determines if we extract the yearly 10,000 domain list
-JUST_JAN = False #Just test January's list
-JAN_MAR = True
+YEAR_BOOL = False # Determines if we extract the yearly 10,000 domain list
+JAN_MAR = False
 APRIL_JUNE = False
 JULY_SEP = False
 OCT_DEC = False
+
+PICK_MONTH_BOOL = False
+PICK_MONTH = "sep" #Just extracting a specific month;
 
 # EXTERNAL_FILE_MODE = False  # Bool to decide if functions write to external files; for testing (might end up with a ton of files if always on) 
 # Seems like external file mode is always on; we probably don't need to make this particularly modular
@@ -93,8 +95,9 @@ OCT_DEC = False
 #TODO: Compare values to existing work (DNSSEC is the big difference in data, which they talk about on page 9 of Dong et al.) 
 #Blog discussing it from 2025: https://netlas.io/blog/what_is_dnssec/#:~:text=DNSSEC%20does%20not%20protect%20against,responses%20by%20removing%20DNSSEC%20configuration
 #TODO: Pull an additional analysis method out of a hat
-#TODO: Fix the DNSSEC retrieval method
-#TODO: Reconfigure the output to retrieve from each csv list specified
+#TODO: Actually figure out what what to do during timeouts, if we, uh, have time
+
+
 
 
 # Did a bunch of compliance printing
@@ -114,6 +117,41 @@ OCT_DEC = False
 # total_rows = count_csv_rows(file_path)
 # print(f"Total number of rows: {total_rows}")
 
+# used to extract the list for specific months
+def switch_month(month):
+    switcher = {
+        "jan": TRANCO_JAN,
+        "feb": TRANCO_FEB,
+        "mar": TRANCO_MAR,
+        "april": TRANCO_APRIL,
+        "may": TRANCO_MAY,
+        "june": TRANCO_JUNE,
+        "july": TRANCO_JULY,
+        "aug": TRANCO_AUG,
+        "sep": TRANCO_SEP,
+        "oct": TRANCO_OCT,
+        "nov": TRANCO_NOV,
+        "dec": TRANCO_DEC
+    }
+    return switcher.get(month.lower(), None)
+
+# Extract the output paths of specific months
+def switch_month_output(month):
+    switcher = {
+        "jan": ("output/jan/jan_rr_records.jsonl", "output/jan/jan_summary.jsonl"),
+        "feb": ("output/feb/feb_rr_records.jsonl", "output/feb/feb_summary.jsonl"),
+        "mar": ("output/mar/mar_rr_records.jsonl", "output/mar/mar_summary.jsonl"),
+        "april": ("output/april/april_rr_records.jsonl", "output/april/april_summary.jsonl"),
+        "may": ("output/may/may_rr_records.jsonl", "output/may/may_summary.jsonl"),
+        "june": ("output/june/june_rr_records.jsonl", "output/june/june_summary.jsonl"),
+        "july": ("output/july/july_rr_records.jsonl", "output/july/july_summary.jsonl"),
+        "aug": ("output/aug/aug_rr_records.jsonl", "output/aug/aug_summary.jsonl"),
+        "sep": ("output/sep/sep_rr_records.jsonl", "output/sep/sep_summary.jsonl"),
+        "oct": ("output/oct/oct_rr_records.jsonl", "output/oct/oct_summary.jsonl"),
+        "nov": ("output/nov/nov_rr_records.jsonl", "output/nov/nov_summary.jsonl"),
+        "dec": ("output/dec/dec_rr_records.jsonl", "output/dec/dec_summary.jsonl")
+    }
+    return switcher.get(month.lower(), (None, None))
 
 # Grab the domains from the tranco list
 def grab_list_domain(filepath):
@@ -536,6 +574,23 @@ def main() :
             print("Retrieving December Record...\n")
             output_list(dec_path, dec_sum_path, list_dec)
 
+        #Problem Children Section:
+        if(PICK_MONTH_BOOL):
+            list_month = grab_list_domain(switch_month(PICK_MONTH))
+            if list_month is None:
+                print(f"Invalid month selection: {PICK_MONTH}")
+                return 1
+
+            month_paths, month_sum_paths = switch_month_output(PICK_MONTH)
+            if month_paths is None or month_sum_paths is None:
+                print(f"Invalid month selection: {PICK_MONTH}")
+                return 1
+    
+
+
+            print(f"Retrieving {PICK_MONTH} Record...\n")
+            output_list(month_paths, month_sum_paths, list_month)
+
     else:
         list_test = grab_list_domain(TRANCO_TEST_PATH)
         test_path = f"output/test/test_rr_records.jsonl"
@@ -543,16 +598,6 @@ def main() :
 
         print("Retrieving Test Record...\n")
         output_list(test_path, test_sum_path, list_test)
-
-    #Sorta just testing the monthly retrieval here  
-    if (JUST_JAN):
-        list_jan = grab_list_domain(TRANCO_JAN)
-
-        jan_path = f"output/jan/jan_rr_records.jsonl"
-        jan_sum_path = f"output/jan/jan_summary.jsonl"
-
-        print("Retrieving January Record...\n")
-        output_list(jan_path, jan_sum_path, list_jan)
 
     
 
