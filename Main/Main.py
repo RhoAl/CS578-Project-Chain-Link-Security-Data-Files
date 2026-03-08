@@ -82,7 +82,7 @@ JULY_SEP = False
 OCT_DEC = False
 
 PICK_MONTH_BOOL = False
-PICK_MONTH = "dec" #Just extracting a specific month;
+PICK_MONTH = "" #Just extracting a specific month;
 
 # EXTERNAL_FILE_MODE = False  # Bool to decide if functions write to external files; for testing (might end up with a ton of files if always on) 
 # Seems like external file mode is always on; we probably don't need to make this particularly modular
@@ -220,7 +220,6 @@ def ech_check(HTTPS_List):
 
 #TODO: Fix our method for finding this
 # When checking for DNSSEC via the AD flag instead of just RRSIG, it seems you need a dedicated DNSSEC-validating resolver, like Cloudflare
-# This might take quite awhile. For right now, it's probably better to just check for the presesence of RRSIGs
 
 def dnssec_check(domain):
     try:
