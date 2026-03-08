@@ -81,7 +81,7 @@ APRIL_JUNE = False
 JULY_SEP = False
 OCT_DEC = False
 
-PICK_MONTH_BOOL = True
+PICK_MONTH_BOOL = False
 PICK_MONTH = "dec" #Just extracting a specific month;
 
 # EXTERNAL_FILE_MODE = False  # Bool to decide if functions write to external files; for testing (might end up with a ton of files if always on) 
