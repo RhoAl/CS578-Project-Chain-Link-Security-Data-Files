@@ -49,6 +49,7 @@ import os
 import datetime
 import csv
 import requests
+from contextlib import ExitStack
 
 
 TRANCO_TEST_PATH = "tranco_test.csv" # File name for the tranco list
@@ -83,6 +84,8 @@ OCT_DEC = False
 
 PICK_MONTH_BOOL = False
 PICK_MONTH = "" #Just extracting a specific month;
+
+SPLIT_RECORDS_BOOL = True # Bool to decide if we split the HTTPS RR records into seperate files for each type of data extracted (ECH, DNSSEC, etc.)
 
 # EXTERNAL_FILE_MODE = False  # Bool to decide if functions write to external files; for testing (might end up with a ton of files if always on) 
 # Seems like external file mode is always on; we probably don't need to make this particularly modular
@@ -218,9 +221,8 @@ def ech_check(HTTPS_List):
     return ech_bool
 
 
-#TODO: Fix our method for finding this
-# When checking for DNSSEC via the AD flag instead of just RRSIG, it seems you need a dedicated DNSSEC-validating resolver, like Cloudflare
 
+# When checking for DNSSEC via the AD flag instead of just RRSIG, it seems you need a dedicated DNSSEC-validating resolver, like Cloudflare
 def dnssec_check(domain):
     try:
         resolver = dns.resolver.Resolver()
@@ -468,6 +470,79 @@ def output_list(records_path, summary_path, list_of_domains):
     print(f"Wrote summary metrics to:    {summary_path}")
 
 
+# Split the records into seperate files for each type of data extracted (ECH, DNSSEC, etc.)
+def split_records(input_jsonl_path):
+    base_dir = os.path.dirname(input_jsonl_path)
+    output_dir = os.path.join(base_dir, "split_records")
+    os.makedirs(output_dir, exist_ok=True)
+
+    # Define the mapping of criteria to filenames
+    criteria_map = {
+        "has_https": "has_https_rr.jsonl",
+        "https_ech": "https_ech.jsonl",
+        "https_dnssec": "https_dnssec.jsonl",
+        "https_ech_dnssec_all": "https_ech_dnssec_all.jsonl",
+        "mode_service": "mode_service.jsonl",
+        "mode_alias": "mode_alias.jsonl",
+        "alpn": "alpn.jsonl",
+        "ipv4hint": "ipv4hint.jsonl",
+        "ipv6hint": "ipv6hint.jsonl",
+        "dynamic_config": "dynamic_config.jsonl"
+    }
+
+    print(f"Reading from: {input_jsonl_path}")
+    print(f"Writing split files to: {output_dir}")
+
+    with ExitStack() as stack:
+        handles = {
+            key: stack.enter_context(open(os.path.join(output_dir, fname), "w", encoding="utf-8"))
+            for key, fname in criteria_map.items()
+        }
+
+        with open(input_jsonl_path, "r", encoding="utf-8") as f_in:
+            for line in f_in:
+                if not line.strip():
+                    continue
+                
+                data = json.loads(line)
+                params = data.get("param_flags", {})
+                
+                # Logic for splitting
+                has_https = data.get("has_https_rr", False)
+                has_ech = data.get("ech_present", False)
+                has_dnssec = data.get("dnssec_present", False)
+                
+                if has_https:
+                    handles["has_https"].write(line)
+                    if has_ech:
+                        handles["https_ech"].write(line)
+                    if has_dnssec:
+                        handles["https_dnssec"].write(line)
+                    if has_ech and has_dnssec:
+                        handles["https_ech_dnssec_all"].write(line)
+
+                # 2. Modes (Service vs Alias)
+                mode = params.get("mode")
+                if mode == "Service":
+                    handles["mode_service"].write(line)
+                elif mode == "Alias":
+                    handles["mode_alias"].write(line)
+
+                # 3. Param Flags
+                if params.get("alpn"):
+                    handles["alpn"].write(line)
+                if params.get("ipv4hint"):
+                    handles["ipv4hint"].write(line)
+                if params.get("ipv6hint"):
+                    handles["ipv6hint"].write(line)
+                if params.get("dynamic_config"):
+                    handles["dynamic_config"].write(line)
+
+    print("Extraction complete.")
+
+# Usage Example:
+# split_records_by_criteria("output/https_rr_records.jsonl")
+
 
 def main() :
     # We could prob make some sort of a switch statement / enum / bool thing to reduce the number of items declared all at once
@@ -477,6 +552,23 @@ def main() :
     # list_test = grab_list_domain(TRANCO_TEST_PATH)
 
     # os.makedirs("output", exist_ok=True)
+
+    #Can't conditionally declare the record paths anymore if I want to make records split work :(
+    records_path = f"output/https_rr_records.jsonl"
+    jan_path = f"output/jan/jan_rr_records.jsonl"
+    feb_path = f"output/feb/feb_rr_records.jsonl"
+    mar_path = f"output/mar/mar_rr_records.jsonl"
+    april_path = f"output/april/april_rr_records.jsonl"
+    may_path = f"output/may/may_rr_records.jsonl"
+    june_path = f"output/june/june_rr_records.jsonl"
+    july_path = f"output/july/july_rr_records.jsonl"
+    aug_path = f"output/aug/aug_rr_records.jsonl"
+    sep_path = f"output/sep/sep_rr_records.jsonl"
+    oct_path = f"output/oct/oct_rr_records.jsonl"
+    nov_path = f"output/nov/nov_rr_records.jsonl"
+    dec_path = f"output/dec/dec_rr_records.jsonl"
+    test_path = f"output/test/test_rr_records.jsonl"
+
 
     #Running a set of bool checks (prob could just make a switch, note for next time)
     if (TEST_BOOL == False):
@@ -598,7 +690,23 @@ def main() :
         print("Retrieving Test Record...\n")
         output_list(test_path, test_sum_path, list_test)
 
-    
+    # Record splitting section
+    if SPLIT_RECORDS_BOOL:
+        split_records(test_path)
+        split_records(records_path)
+        split_records(jan_path)
+        split_records(feb_path)
+        split_records(mar_path)
+        split_records(april_path)
+        split_records(may_path)
+        split_records(june_path)
+        split_records(july_path)
+        split_records(aug_path)
+        split_records(sep_path)
+        split_records(oct_path)
+        split_records(nov_path)
+        split_records(dec_path)
+
 
     return 0
 

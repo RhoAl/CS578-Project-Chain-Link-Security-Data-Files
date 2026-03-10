@@ -7,7 +7,7 @@ Contains the data files for our CS578 project on trends in the simultaneous use 
 
 - Main: Contains the main data file for data retrieval, along with a series of CSV Files that track the top-10,000 level pay-level domains over a period of 01/01/2025 to 01/01/2026
 
-- Main/output: Contains a JSON summary of our data calculations, as well as the raw HTTPS retrival data
+- Main/output: Contains a JSON summary of our data calculations, the raw HTTPS retrival data, and the split_record folders that hold the record data that's split based on the protocols and parameters used (if they use ECH, DNSSEC)
 
 - Main/Monthly_CSV: Contains the monthly top 10,000 pay-level domains for each month of 2025
 
