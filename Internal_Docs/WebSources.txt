@@ -1,0 +1,7 @@
+https://www.dnsfilter.com/glossary/dnssec
+https://www.recordedfuture.com/threat-intelligence-101/tools-and-techniques/dnssec
+https://developers.cloudflare.com/ssl/edge-certificates/ech/
+https://docs.mulesoft.com/mule-sdk/latest/static-dynamic-configs
+https://arxiv.org/html/2403.15672v2
+https://nordvpn.com/blog/dns-over-https/?srsltid=AfmBOoru3O35mHT-0xjrprGJXztOOiUX5daq6wingShHknNAspTZiVR8
+https://kb.isc.org/docs/svcb-and-https-resource-records-what-are-they
