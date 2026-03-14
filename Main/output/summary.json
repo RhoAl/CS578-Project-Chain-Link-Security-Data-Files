@@ -1,27 +1,29 @@
 {
   "domain_count": 10000,
   "counts": {
-    "https_count": 2044,
-    "https_ech_count": 497,
-    "https_dnssec_count": 430,
-    "https_ech_dnssec_count": 59,
-    "aliasmode_count": 3,
-    "servicemode_count": 2041,
-    "alpn_count": 2029,
-    "ipv4hint_count": 1977,
-    "ipv6hint_count": 1689,
-    "dynamic_config_count": 2037
+    "https_usage_count": 8641,
+    "https_RR_count": 3126,
+    "https_ech_count": 773,
+    "https_dnssec_count": 745,
+    "https_ech_dnssec_count": 71,
+    "aliasmode_count": 4,
+    "servicemode_count": 3122,
+    "alpn_count": 3108,
+    "ipv4hint_count": 2749,
+    "ipv6hint_count": 2327,
+    "dynamic_config_count": 3118
   },
   "shares_percent (%)": {
-    "https_share": 20.44,
-    "https_ech_share": 4.97,
-    "https_dnssec_share": 4.3,
-    "https_ech_dnssec_share": 0.59,
-    "aliasmode_share": 0.03,
-    "servicemode_share": 20.41,
-    "alpn_share": 20.29,
-    "ipv4hint_share": 19.77,
-    "ipv6hint_share": 16.89,
-    "dynamic_config_share": 20.369999999999997
+    "https_usage_share": 86.41,
+    "https_RR_share": 31.259999999999998,
+    "https_ech_share": 7.7299999999999995,
+    "https_dnssec_share": 7.449999999999999,
+    "https_ech_dnssec_share": 0.7100000000000001,
+    "aliasmode_share": 0.04,
+    "servicemode_share": 31.22,
+    "alpn_share": 31.080000000000002,
+    "ipv4hint_share": 27.49,
+    "ipv6hint_share": 23.27,
+    "dynamic_config_share": 31.180000000000003
   }
 }

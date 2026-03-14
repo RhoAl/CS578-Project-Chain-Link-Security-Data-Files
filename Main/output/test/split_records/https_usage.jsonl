@@ -9,15 +9,12 @@
 {"domain": "cloudflare.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": true, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h3,h2\" ipv4hint=\"104.16.132.229,104.16.133.229\" ipv6hint=\"2606:4700::6810:84e5,2606:4700::6810:85e5\"", "priority": 1, "target": "."}]}
 {"domain": "twitter.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "office.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "amazonaws.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "live.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "linkedin.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "googletagmanager.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "amazon.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "microsoftonline.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "googlevideo.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": false, "ipv6hint": false, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h2,h3\"", "priority": 1, "target": "."}]}
 {"domain": "wikipedia.org", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "windowsupdate.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "github.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "fbcdn.net", "https_usage": true, "has_https_rr": true, "rr_count": 2, "ech_present": false, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": false, "ipv6hint": false, "dynamic_config": true}, "records": [{"rdata_text": "2 star-mini.fallback.c10r.facebook.com. alpn=\"h2,h3\"", "priority": 2, "target": "star-mini.fallback.c10r.facebook.com."}, {"rdata_text": "1 . alpn=\"h2,h3\"", "priority": 1, "target": "."}]}
 {"domain": "doubleclick.net", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
@@ -26,39 +23,29 @@
 {"domain": "bing.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "whatsapp.net", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "wordpress.org", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "e2ro.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "youtu.be", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": false, "ipv4hint": false, "ipv6hint": false, "dynamic_config": false}, "records": [{"rdata_text": "1 .", "priority": 1, "target": "."}]}
 {"domain": "netflix.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "icloud.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "pinterest.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "apple-dns.net", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "whatsapp.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "goo.gl", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "office.net", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "skype.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "x.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "yahoo.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "akadns.net", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "msn.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "ntp.org", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "googlesyndication.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "aaplimg.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "tiktok.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "vimeo.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "spotify.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "adobe.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "windows.net", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "cloudfront.net", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "ytimg.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "chatgpt.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "wa.me", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "akamai.net", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "nginx.org", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "google-analytics.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "office365.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "cloudflare-dns.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": true, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h3,h2\" ipv4hint=\"104.16.248.249,104.16.249.249\" ipv6hint=\"2606:4700::6810:f8f9,2606:4700::6810:f9f9\"", "priority": 1, "target": "."}]}
-{"domain": "gvt2.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "tiktokcdn.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "bit.ly", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "nginx.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "tiktokv.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
@@ -74,9 +61,6 @@
 {"domain": "qq.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "azure.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "ui.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "gvt1.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "akamaiedge.net", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "cdninstagram.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "t.me", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "sentry.io", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "blogspot.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
@@ -105,25 +89,18 @@
 {"domain": "tumblr.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "msftconnecttest.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "criteo.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "steamserver.net", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "opera.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "applovin.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "nytimes.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "dropbox.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "ggpht.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "appsflyersdk.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": false, "ipv6hint": false, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h2\"", "priority": 1, "target": "."}]}
 {"domain": "discord.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": true, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": false, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h3,h2\" ipv4hint=\"162.159.128.233,162.159.135.232,162.159.136.232,162.159.137.232,162.159.138.232\"", "priority": 1, "target": "."}]}
-{"domain": "trafficmanager.net", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "3gppnetwork.org", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "macromedia.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "vk.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "mailinabox.email", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "shopify.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "unity3d.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "paypal.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": true, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": false, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h2\" ipv4hint=\"104.18.6.168,104.18.7.168\"", "priority": 1, "target": "."}]}
-{"domain": "amazon.dev", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "cdn-apple.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "a2z.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "flickr.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "godaddy.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "lencr.org", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
@@ -136,7 +113,6 @@
 {"domain": "taboola.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "creativecommons.org", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": true, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h2\" ipv4hint=\"104.20.5.134,104.20.6.134\" ipv6hint=\"2606:4700:10::6814:586,2606:4700:10::6814:686\"", "priority": 1, "target": "."}]}
 {"domain": "forbes.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "tiktokcdn-us.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "adtrafficquality.google", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "example.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": true, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h2\" ipv4hint=\"104.18.26.120,104.18.27.120\" ipv6hint=\"2606:4700::6812:1a78,2606:4700::6812:1b78\"", "priority": 1, "target": "."}]}
 {"domain": "t.co", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
@@ -169,10 +145,7 @@
 {"domain": "who.int", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "linktr.ee", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "yandex.ru", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "playstation.net", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "static.microsoft", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "scorecardresearch.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "aws.dev", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "hubspot.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": true, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h2\" ipv4hint=\"104.17.91.187,104.17.92.187\" ipv6hint=\"2606:4700::6811:5bbb,2606:4700::6811:5cbb\"", "priority": 1, "target": "."}]}
 {"domain": "mail.ru", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "doubleverify.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": true, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h3,h2\" ipv4hint=\"199.60.103.31,199.60.103.225\" ipv6hint=\"2606:2c40::c73c:671f,2606:2c40::c73c:67e1\"", "priority": 1, "target": "."}]}
@@ -182,10 +155,8 @@
 {"domain": "wikimedia.org", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "tinyurl.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": true, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h3,h2\" ipv4hint=\"104.17.112.233,104.18.111.161\" ech=\"AEX+DQBBGgAgACClPo4T0YplcS4Top9Gw1apvlH3jmVnAc9TZOqYaoKKawAEAAEAAQASY2xvdWRmbGFyZS1lY2guY29tAAA=\" ipv6hint=\"2606:4700::6811:70e9,2606:4700::6812:6fa1\"", "priority": 1, "target": "."}]}
 {"domain": "epicgames.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "nr-data.net", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "ubuntu.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "springer.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "msedge.net", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "demdex.net", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "dropcatch.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h2\" ipv4hint=\"104.20.47.210,172.66.151.154\" ipv6hint=\"2606:4700:10::6814:2fd2,2606:4700:10::ac42:979a\"", "priority": 1, "target": "."}]}
 {"domain": "reuters.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
@@ -195,7 +166,6 @@
 {"domain": "etsy.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "mzstatic.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "php.net", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "jsdelivr.net", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "nature.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "debian.org", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "bilibili.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
@@ -207,7 +177,6 @@
 {"domain": "ampproject.org", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "stripe.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "cisco.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "media-amazon.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "amazon.co.uk", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "steampowered.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "casalemedia.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
@@ -225,7 +194,6 @@
 {"domain": "cookielaw.org", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h2\" ipv4hint=\"104.18.86.42,104.18.87.42\" ipv6hint=\"2606:4700::6812:562a,2606:4700::6812:572a\"", "priority": 1, "target": "."}]}
 {"domain": "wyzecam.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h2\" ipv4hint=\"104.18.16.228,104.18.17.228\" ipv6hint=\"2606:4700::6812:10e4,2606:4700::6812:11e4\"", "priority": 1, "target": "."}]}
 {"domain": "mozilla.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "facebook.net", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "inmobi.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "crashlytics.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "miui.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
@@ -241,28 +209,21 @@
 {"domain": "smartadserver.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "bloomberg.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "businessinsider.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "avsxappcaptiveportal.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "telegraph.co.uk", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "tiktokv.us", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "roku.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": true, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h2\" ipv4hint=\"162.159.135.11,162.159.136.11\" ipv6hint=\"2606:4700:7::a29f:870b,2606:4700:7::a29f:880b\"", "priority": 1, "target": "."}]}
 {"domain": "aliyuncs.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "stanford.edu", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "cloudflareinsights.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h2\" ipv4hint=\"104.16.79.73,104.16.80.73\" ipv6hint=\"2606:4700::6810:4f49,2606:4700::6810:5049\"", "priority": 1, "target": "."}]}
 {"domain": "opendns.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "plesk.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h3,h2\" ipv4hint=\"104.18.40.121,172.64.147.135\" ipv6hint=\"2606:4700:440b::ac40:9387,2a06:98c1:3104::6812:2879\"", "priority": 1, "target": "."}]}
-{"domain": "sc-cdn.net", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "ibyteimg.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "aliexpress.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "ipv4only.arpa", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "unsplash.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "naver.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "capcutapi.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "dailymotion.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "xboxlive.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "appsflyer.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": true, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h3,h2\" ipv4hint=\"104.18.6.40,104.18.7.40\" ipv6hint=\"2606:4700::6812:628,2606:4700::6812:728\"", "priority": 1, "target": "."}]}
 {"domain": "google.com.br", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": false, "ipv6hint": false, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h2,h3\"", "priority": 1, "target": "."}]}
 {"domain": "kwai-pro.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "nflxso.net", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "cookiedatabase.org", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": true, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h3,h2\" ipv4hint=\"104.26.8.125,104.26.9.125,172.67.71.26\" ech=\"AEX+DQBBGgAgACClPo4T0YplcS4Top9Gw1apvlH3jmVnAc9TZOqYaoKKawAEAAEAAQASY2xvdWRmbGFyZS1lY2guY29tAAA=\" ipv6hint=\"2606:4700:20::681a:87d,2606:4700:20::681a:97d,2606:4700:20::ac43:471a\"", "priority": 1, "target": "."}]}
 {"domain": "3lift.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "cornell.edu", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
@@ -270,17 +231,13 @@
 {"domain": "scdn.co", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "telegram.me", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "wp.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "ax-msedge.net", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "duckduckgo.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "amazonalexa.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "samsungqbe.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "cdn77.org", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "myshopify.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "amazonvideo.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "nasa.gov", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "yandex.net", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "indeed.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": true, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": false, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h3,h2\" ipv4hint=\"162.159.129.67,162.159.130.67\"", "priority": 1, "target": "."}]}
-{"domain": "sfx.ms", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "statista.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "temu.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "go.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
@@ -290,57 +247,39 @@
 {"domain": "expireddomains.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h3,h2\" ipv4hint=\"104.26.14.122,104.26.15.122,172.67.69.86\" ipv6hint=\"2606:4700:20::681a:e7a,2606:4700:20::681a:f7a,2606:4700:20::ac43:4556\"", "priority": 1, "target": "."}]}
 {"domain": "pixabay.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": true, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h3,h2\" ipv4hint=\"104.18.40.96,172.64.147.160\" ipv6hint=\"2606:4700:4400::ac40:93a0,2a06:98c1:3107::6812:2860\"", "priority": 1, "target": "."}]}
 {"domain": "steamcommunity.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "bamgrid.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "firetvcaptiveportal.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "list-manage.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "inner-active.mobi", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "line.me", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": false, "ipv6hint": false, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h2\"", "priority": 1, "target": "."}]}
 {"domain": "cnbc.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "azureedge.net", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "beian.gov.cn", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "gamepass.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "addtoany.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": true, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h3,h2\" ipv4hint=\"104.20.20.192,172.66.171.172\" ipv6hint=\"2606:4700:10::6814:14c0,2606:4700:10::ac42:abac\"", "priority": 1, "target": "."}]}
 {"domain": "taobao.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "amazon.de", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "avcdn.net", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "ttdns2.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "goodreads.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": false, "ipv6hint": false, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h2\"", "priority": 1, "target": "."}]}
 {"domain": "ietf.org", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": true, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h3,h2\" ipv4hint=\"104.16.44.99,104.16.45.99\" ipv6hint=\"2606:4700::6810:2c63,2606:4700::6810:2d63\"", "priority": 1, "target": "."}]}
 {"domain": "mtgglobals.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": false, "ipv6hint": false, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h2,h3\"", "priority": 1, "target": "."}]}
 {"domain": "aol.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "allawnos.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "tiktokcdn-eu.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "gitlab.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "quora.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "g.page", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "pangle.io", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "heytapmobile.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "aliyun.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "azurefd.net", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "globo.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "independent.co.uk", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "speedtest.net", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": true, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": false, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h2\" ipv4hint=\"104.17.147.22,104.17.148.22\"", "priority": 1, "target": "."}]}
-{"domain": "samsungcloudsolution.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "heytapdl.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "giphy.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "eventbrite.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": false, "ipv6hint": false, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h2\"", "priority": 1, "target": "."}]}
 {"domain": "google.de", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": false, "ipv6hint": false, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h2,h3\"", "priority": 1, "target": "."}]}
-{"domain": "akamaized.net", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "shalltry.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "nflximg.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "tiktokv.eu", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "trustpilot.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "npr.org", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "amzn.to", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "163.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "bytefcdn-oversea.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "mysql.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "foxnews.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "edgesuite.net", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "vivoglobal.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "fastly-edge.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "tradingview.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "douyincdn.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "kwai.net", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "kwaipros.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "wired.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
@@ -357,7 +296,6 @@
 {"domain": "time.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "visualstudio.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "slack.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "safebrowsing.apple", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "netflix.net", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "usatoday.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "blogger.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
@@ -377,19 +315,15 @@
 {"domain": "capcut.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "jquery.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h2\" ipv4hint=\"104.18.155.119,104.18.156.119\" ipv6hint=\"2606:4700::6812:9b77,2606:4700::6812:9c77\"", "priority": 1, "target": "."}]}
 {"domain": "oup.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "msidentity.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "xhamster.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h3,h2\" ipv4hint=\"104.16.3.81,104.16.4.81\" ipv6hint=\"2606:4700::6810:351,2606:4700::6810:451\"", "priority": 1, "target": "."}]}
 {"domain": "fast.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "uk.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "tandfonline.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h3,h2\" ipv4hint=\"104.18.39.123,172.64.148.133\" ipv6hint=\"2606:4700:4405::ac40:9485,2a06:98c1:3103::6812:277b\"", "priority": 1, "target": "."}]}
 {"domain": "shopee.com.br", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "uber.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "aiv-delivery.net", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "tripadvisor.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": false, "ipv6hint": false, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h2\"", "priority": 1, "target": "."}]}
 {"domain": "berkeley.edu", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "byteoversea.net", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "webex.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "adobedtm.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "loc.gov", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": true, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h2\" ipv4hint=\"104.17.6.58,104.18.64.82\" ipv6hint=\"2606:4700::6811:63a,2606:4700::6812:4052\"", "priority": 1, "target": "."}]}
 {"domain": "arxiv.org", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "icloud-content.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
@@ -403,7 +337,6 @@
 {"domain": "yelp.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "ieee.org", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": false, "ipv6hint": false, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h2\"", "priority": 1, "target": "."}]}
 {"domain": "mi.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "googlezip.net", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "accuweather.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "zendesk.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": true, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h2\" ipv4hint=\"104.18.34.51,172.64.153.205\" ipv6hint=\"2606:4700:440c::ac40:99cd,2a06:98c1:3104::6812:2233\"", "priority": 1, "target": "."}]}
 {"domain": "cnet.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
@@ -413,7 +346,6 @@
 {"domain": "google.com.hk", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "imgur.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "rlcdn.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "azurewebsites.net", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "jotform.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "teamviewer.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "squarespace.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
@@ -434,13 +366,11 @@
 {"domain": "elpais.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "ted.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "surveymonkey.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": false, "ipv6hint": false, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h2,h3\"", "priority": 1, "target": "."}]}
-{"domain": "bidswitch.net", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "oxylabs.io", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h3,h2\" ipv4hint=\"104.20.16.140,172.66.144.86\" ipv6hint=\"2606:4700:10::6814:108c,2606:4700:10::ac42:9056\"", "priority": 1, "target": "."}]}
 {"domain": "githubusercontent.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "intuit.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "salesforce.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "telephony.goog", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "2mdn.net", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "licdn.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "shutterstock.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "service.gov.uk", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
@@ -453,13 +383,11 @@
 {"domain": "tapad.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "onetrust.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": true, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h2\" ipv4hint=\"104.18.32.137,172.64.155.119\" ipv6hint=\"2a06:98c1:3104::6812:2089,2a06:98c1:310d::ac40:9b77\"", "priority": 1, "target": "."}]}
 {"domain": "newrelic.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "typekit.net", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "lemonde.fr", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "agkn.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "pinimg.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "autodesk.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "spiegel.de", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "live.net", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "amazon.fr", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "apnews.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": true, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h3,h2\" ipv4hint=\"104.16.22.8,104.16.23.8\" ipv6hint=\"2606:4700::6810:1608,2606:4700::6810:1708\"", "priority": 1, "target": "."}]}
 {"domain": "llamarpc.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": false, "ipv6hint": false, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h2\"", "priority": 1, "target": "."}]}
@@ -468,7 +396,6 @@
 {"domain": "appcenter.ms", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "mailchimp.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "outbrain.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "twimg.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "wp.pl", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "withgoogle.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "wattpad.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
@@ -480,15 +407,12 @@
 {"domain": "mediafire.com", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": true, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": false, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h3,h2\" ipv4hint=\"104.17.147.83,104.17.148.83\"", "priority": 1, "target": "."}]}
 {"domain": "nintendo.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "hotjar.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "liadm.com", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "nel.goog", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "fb.com", "https_usage": true, "has_https_rr": true, "rr_count": 2, "ech_present": false, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": false, "ipv6hint": false, "dynamic_config": true}, "records": [{"rdata_text": "2 star-mini.fallback.c10r.facebook.com. alpn=\"h2,h3\"", "priority": 2, "target": "star-mini.fallback.c10r.facebook.com."}, {"rdata_text": "1 . alpn=\"h2,h3\"", "priority": 1, "target": "."}]}
 {"domain": "id5-sync.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "allaboutcookies.org", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": true, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h3,h2\" ipv4hint=\"172.66.131.207,172.66.131.208\" ipv6hint=\"2606:4700:10::ac42:83cf,2606:4700:10::ac42:83d0\"", "priority": 1, "target": "."}]}
 {"domain": "ups.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "b-cdn.net", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": false, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h2,http/1.1\" ipv4hint=\"143.244.49.179\"", "priority": 1, "target": "."}]}
 {"domain": "networkadvertising.org", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
-{"domain": "1rx.io", "https_usage": false, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "wildberries.ru", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "stackadapt.com", "https_usage": true, "has_https_rr": false, "rr_count": 0, "ech_present": false, "dnssec_present": false, "param_flags": {}, "records": []}
 {"domain": "pages.dev", "https_usage": true, "has_https_rr": true, "rr_count": 1, "ech_present": false, "dnssec_present": false, "param_flags": {"mode": "Service", "alpn": true, "ipv4hint": true, "ipv6hint": true, "dynamic_config": true}, "records": [{"rdata_text": "1 . alpn=\"h2\" ipv4hint=\"104.18.20.135,104.18.21.135\" ipv6hint=\"2606:4700::6812:1487,2606:4700::6812:1587\"", "priority": 1, "target": "."}]}
