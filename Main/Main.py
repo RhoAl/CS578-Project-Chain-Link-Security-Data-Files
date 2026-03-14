@@ -50,6 +50,8 @@ import datetime
 import csv
 import requests
 from contextlib import ExitStack
+import socket
+import ssl
 
 
 TRANCO_TEST_PATH = "tranco_test.csv" # File name for the tranco list
@@ -76,7 +78,7 @@ TEST_DOMAIN_COUNT = 500 #Isn't attatched to anything yet
 DOMAIN_COUNT = 10000  #Number of domains in the tranco list
 # DOMAIN_COUNT = 500 #Number of domains in the test list
 TEST_BOOL = False    # Just determines if we're running a test with the 500 domain list or not
-YEAR_BOOL = False # Determines if we extract the yearly 10,000 domain list
+YEAR_BOOL = True   # Determines if we extract the yearly 10,000 domain list
 JAN_MAR = False
 APRIL_JUNE = False
 JULY_SEP = False
@@ -312,34 +314,68 @@ def param_check(HTTPS_List):
         "dynamic_config": dynamic_config,
     }
 
-# Check if a domain is using HTTPS protocol
-# Returns the number of domains using HTTPS protocol
-# def https_check(domains) :
-#     try:
-#         HTTPS_List = dns.resolver.resolve(domains, "HTTPS") # It's important to note that resolve returns a special memory object; I think you need to alter it to parse it
-#         ech_bool = ech_check(HTTPS_List)
-#         dnssec_bool = dnssec_check(HTTPS_List)
-#         params = param_check(HTTPS_List)
-#         records = extract_https_rr_records(HTTPS_List)
 
-#         # print(HTTPS_List) #Test print of the response
+# Check raw TLS connectivity to see if a domain is using HTTPS
+def check_tls_connection(domain, port=443, timeout=5.0):
+    targets = [domain, f"www.{domain}"]
+    
+    for target in targets:
+        context = ssl.create_default_context()
+        context.check_hostname = False
+        context.verify_mode = ssl.CERT_NONE 
 
-#         return len(HTTPS_List) > 0, ech_bool, dnssec_bool, params, records
+        try:
+            with socket.create_connection((target, port), timeout=timeout) as sock:
+                with context.wrap_socket(sock, server_hostname=target) as ssock:
+                    # return True, target
+                    return True
+        except (socket.timeout, ConnectionRefusedError, socket.gaierror, ssl.SSLError, OSError):
+            continue 
+        # We either try the next target subdomains or fail
+            
+    # return False, None
+    return False
 
-#     except(dns.resolver.NoAnswer,
-#             dns.resolver.NXDOMAIN,
-#             dns.resolver.NoNameservers,
-#             dns.exception.Timeout):
-#         return False, False, False, {}, []
+
+# Helper function for http_check (gets RR, not HTTPS!!!) to try both the apex domain and the www. subdomain, with retries for failures
+def get_https_answers(domain, retries=4):
+    # Expanded resolver list to prevent rate limiting
+    resolver = dns.resolver.Resolver()
+    resolver.nameservers = ['8.8.8.8', '1.1.1.1', '9.9.9.9', '208.67.222.222'] 
+    resolver.lifetime = 5.0 # Timeout
+    
+    targets = [domain, f"www.{domain}"]
+    
+    for target in targets:
+        for attempt in range(retries):
+            try:
+                # UDP
+                HTTPS_List = resolver.resolve(target, "HTTPS")
+                if HTTPS_List:
+                    return HTTPS_List, target 
+                    
+            except dns.resolver.NoAnswer:
+                break 
+            except dns.resolver.NXDOMAIN:
+                break 
+            except (dns.exception.Timeout, dns.resolver.NoNameservers):
+                # Timeout, so retrty
+                if attempt < retries - 1:
+                    continue
+                else:
+                    break # Hit max, so quit
+                    
+    return None, None
 
 
 
-def https_check(domains) :
+# Modifying, so I'm keep the old one here like this as backup
+def old_https_check(domains) :
     try:
         HTTPS_List = dns.resolver.resolve(domains, "HTTPS") 
         ech_bool = ech_check(HTTPS_List)
         
-        # FIX: Pass the 'domains' string, not the 'HTTPS_List' answer object
+        # Passing the domains string seems to fix the undercounting
         dnssec_bool = dnssec_check(domains) 
         
         params = param_check(HTTPS_List)
@@ -352,6 +388,70 @@ def https_check(domains) :
             dns.resolver.NoNameservers,
             dns.exception.Timeout):
         return False, False, False, {}, []
+    
+
+# Modifying, so I'm also keeping the other old one here like this as backup
+def old_https_check2(domains) :
+    # Might be a resolver issue causing the undercount
+    resolver = dns.resolver.Resolver()
+    resolver.nameservers = ['1.1.1.1', '8.8.8.8']
+
+    # The idea is to to try UDP first, then move to TCP if that fails
+    # Some domains may block UDP quries
+    for transport in ['UDP', 'TCP']:
+        try:
+            if transport == 'UDP':
+                HTTPS_List = resolver.resolve(domains, "HTTPS")
+            else:
+                # Try to force a TCP query
+
+                request = dns.message.make_query(domains, dns.rdatatype.HTTPS)
+                #response = dns.query.tcp(request, resolver.nameservers[0], timeout=5)
+                response = dns.query.tcp(request, resolver.nameservers[0])  # Trying a version without timeout
+
+                # HTTPS_List = response.answer 
+                # In the event of a TCP query, the response is a raw DNS message, so we'll need to parse it to get rdata
+                # Unpack the RRsets from the raw message into a list of Rdata objects
+                HTTPS_List = []
+                for rrset in response.answer:
+                    if rrset.rdtype == dns.rdatatype.HTTPS:
+                        HTTPS_List.extend([rdata for rdata in rrset])
+
+            # If response successful
+            if HTTPS_List:
+                ech_bool = ech_check(HTTPS_List)
+                dnssec_bool = dnssec_check(domains)
+                params = param_check(HTTPS_List)
+                records = extract_https_rr_records(HTTPS_List)
+                return True, ech_bool, dnssec_bool, params, records
+
+        except(dns.resolver.NoAnswer,
+            dns.resolver.NXDOMAIN,
+            dns.resolver.NoNameservers,
+            dns.exception.Timeout):
+            continue 
+    
+    # When both UDP and TCP fail
+    return False, False, False, {}, []
+
+
+# Let's try one more time
+def https_check(domain):
+    HTTPS_List, successful_target = get_https_answers(domain)
+    HTTPS_usage = check_tls_connection(domain)
+    
+    if HTTPS_List:
+        #check_tls_connection(domain)
+
+        ech_bool = ech_check(HTTPS_List)
+        dnssec_bool = dnssec_check(successful_target) 
+        
+        params = param_check(HTTPS_List)
+        records = extract_https_rr_records(HTTPS_List)
+        
+        return HTTPS_usage, True, ech_bool, dnssec_bool, params, records
+
+    return HTTPS_usage, False, False, False, {}, []
 
 
 
@@ -362,11 +462,10 @@ def share(x):
 
 
 # Taking the output from the main output, and putting it in a function
-# TODO: actually finish these Functions
-# TODO: Put them all in an external file and import them
 def output_list(records_path, summary_path, list_of_domains):
     # TODO: figure out the parameters
-    HTTPS_Count = 0 # Domains with HTTPS RR
+    HTTPS_count = 0   # Domains with HTTPS usage
+    HTTPS_RR_Count = 0 # Domains with HTTPS RR
     ech_count = 0   # Domains with HTTPS + ECH
     https_dnssec_count = 0  # Domains with HTTPS RR + DNSSEC
     https_ech_dnssec_count = 0  # Domains with HTTPS RR + ECH + DNSSEC
@@ -387,10 +486,12 @@ def output_list(records_path, summary_path, list_of_domains):
             count += 1
             print(f"Recording record {count}")
 
-            HTTPS_Ans, ech_ans, dnssec_ans, params, records = https_check(domain)
+            HTTPS_use, HTTPS_Ans, ech_ans, dnssec_ans, params, records = https_check(domain)
 
+            if HTTPS_use == True:
+                HTTPS_count += 1
             if HTTPS_Ans == True :
-                HTTPS_Count += 1
+                HTTPS_RR_Count += 1
                 if dnssec_ans == True:
                     https_dnssec_count += 1
             if ech_ans == True:
@@ -419,6 +520,7 @@ def output_list(records_path, summary_path, list_of_domains):
             
             row = {
                 "domain": domain,
+                "https_usage": HTTPS_use,
                 "has_https_rr": HTTPS_Ans,
                 "rr_count": len(records),
                 "ech_present": ech_ans,
@@ -438,7 +540,8 @@ def output_list(records_path, summary_path, list_of_domains):
         "domain_count": DOMAIN_COUNT,
 
         "counts": {
-            "https_count": HTTPS_Count,
+            "https_usage_count": HTTPS_count,
+            "https_RR_count": HTTPS_RR_Count,
             "https_ech_count": ech_count,
             "https_dnssec_count": https_dnssec_count,
             "https_ech_dnssec_count": https_ech_dnssec_count,
@@ -450,7 +553,8 @@ def output_list(records_path, summary_path, list_of_domains):
             "dynamic_config_count": dynamic_config_count,
         },
         "shares_percent (%)": {
-            "https_share": share(HTTPS_Count),
+            "https_usage_share": share(HTTPS_count),
+            "https_RR_share": share(HTTPS_RR_Count),
             "https_ech_share": share(ech_count),
             "https_dnssec_share": share(https_dnssec_count),
             "https_ech_dnssec_share": share(https_ech_dnssec_count),
@@ -478,7 +582,8 @@ def split_records(input_jsonl_path):
 
     # Define the mapping of criteria to filenames
     criteria_map = {
-        "has_https": "has_https_rr.jsonl",
+        "https_usage": "https_usage.jsonl",
+        "has_https_rr": "has_https_rr.jsonl",
         "https_ech": "https_ech.jsonl",
         "https_dnssec": "https_dnssec.jsonl",
         "https_ech_dnssec_all": "https_ech_dnssec_all.jsonl",
@@ -508,12 +613,16 @@ def split_records(input_jsonl_path):
                 params = data.get("param_flags", {})
                 
                 # Logic for splitting
-                has_https = data.get("has_https_rr", False)
+                https_usage = data.get("https_usage", False)
+                has_https_rr = data.get("has_https_rr", False)
                 has_ech = data.get("ech_present", False)
                 has_dnssec = data.get("dnssec_present", False)
                 
-                if has_https:
-                    handles["has_https"].write(line)
+                if https_usage:
+                    handles["https_usage"].write(line)
+
+                if has_https_rr:
+                    handles["has_https_rr"].write(line)
                     if has_ech:
                         handles["https_ech"].write(line)
                     if has_dnssec:
