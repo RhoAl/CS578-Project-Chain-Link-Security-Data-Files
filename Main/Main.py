@@ -251,7 +251,6 @@ def dnssec_check(domain):
         return False
 
     except Exception as e:
-        # It's usually good practice to log 'e' during testing so bugs don't hide
         # print(f"DNSSEC Error for {domain}: {e}") 
         return False
     
